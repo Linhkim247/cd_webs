@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!--==========link trên là của sidebar -->
+  <!-- còn cái style này mới là của MAIN nè -->
+  <style>
+
+    .profile-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+  height: max-content;
+
+  position: relative;
+  padding: 30px;
+  border-radius: 24px;
+
+  /* GLASS */
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.05)
+  );
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border: 1px solid rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.35),
+    inset 0 0 0.5px rgba(255,255,255,0.6);
+
+  transition: all 0.35s ease;
+}
+
+/* Hover nổi nhẹ */
+
+
+/* Avatar */
+.avatar-frame{
+position:relative;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+}
+
+.avatar{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+z-index:2;
+
+border:4px solid rgba(255,255,255,0.85);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.25);
+
+background:white;
+}
+
+/* ================= RANK EFFECT ================= */
+
+/* Bronze */
+
+.frame-bronze{
+
+box-shadow:
+0 0 8px rgba(205,127,50,.6);
+
+}
+
+/* Silver */
+
+.frame-silver{
+
+box-shadow:
+0 0 12px rgba(200,200,200,.8),
+0 0 18px rgba(200,200,200,.4);
+
+}
+
+/* Gold */
+
+.frame-gold{
+
+box-shadow:
+0 0 15px rgba(255,215,0,.9),
+0 0 25px rgba(255,215,0,.6),
+0 0 40px rgba(255,215,0,.3);
+
+}
+
+/* Diamond */
+
+.frame-diamond{
+
+box-shadow:
+0 0 18px rgba(0,200,255,.9),
+0 0 35px rgba(0,200,255,.7),
+0 0 60px rgba(0,200,255,.4);
+
+animation: diamondGlow 4s infinite alternate;
+
+}
+
+/* Legend */
+
+.frame-legend{
+
+box-shadow:
+0 0 20px rgba(255,70,120,1),
+0 0 40px rgba(255,70,120,.9),
+0 0 80px rgba(255,70,120,.6);
+
+animation: legendGlow 3s infinite alternate;
+
+}
+
+/* Mythic */
+
+.frame-mythic{
+
+box-shadow:
+0 0 30px #7b2cff,
+0 0 60px #7b2cff,
+0 0 120px #7b2cff;
+
+animation: mythicGlow 2.5s infinite alternate;
+
+}
+.frame-platinum{
+box-shadow:
+0 0 12px rgba(80,255,200,0.9),
+0 0 20px rgba(80,255,200,0.5);
+
+animation:platinumGlow 2.5s infinite alternate;
+}
+
+@keyframes platinumGlow{
+
+from{
+box-shadow:
+0 0 12px rgba(80,255,200,0.8),
+0 0 20px rgba(80,255,200,0.4);
+}
+
+to{
+box-shadow:
+0 0 18px rgba(120,255,220,1),
+0 0 30px rgba(80,255,200,0.8);
+}
+
+}
+
+.frame-master{
+
+box-shadow:
+0 0 14px rgba(180,120,255,0.9),
+0 0 24px rgba(160,80,255,0.6);
+
+animation:masterGlow 2.2s infinite alternate;
+
+}
+
+@keyframes masterGlow{
+
+from{
+box-shadow:
+0 0 14px rgba(180,120,255,0.9),
+0 0 24px rgba(160,80,255,0.5);
+}
+
+to{
+box-shadow:
+0 0 22px rgba(200,140,255,1),
+0 0 34px rgba(160,80,255,0.8);
+}
+
+}
+
+.frame-grandmaster{
+
+box-shadow:
+0 0 16px rgba(255,80,80,0.9),
+0 0 26px rgba(255,40,40,0.7);
+
+animation:gmGlow 2s infinite alternate;
+
+}
+
+@keyframes gmGlow{
+
+from{
+box-shadow:
+0 0 16px rgba(255,80,80,0.9),
+0 0 26px rgba(255,40,40,0.6);
+}
+
+to{
+box-shadow:
+0 0 26px rgba(255,100,100,1),
+0 0 40px rgba(255,40,40,0.9);
+}
+
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes diamondGlow{
+
+from{
+box-shadow:
+0 0 18px rgba(0,200,255,.7),
+0 0 35px rgba(0,200,255,.5);
+}
+
+to{
+box-shadow:
+0 0 30px rgba(0,200,255,1),
+0 0 60px rgba(0,200,255,.8);
+}
+
+}
+
+@keyframes legendGlow{
+
+from{
+box-shadow:
+0 0 20px rgba(255,70,120,.8),
+0 0 40px rgba(255,70,120,.6);
+}
+
+to{
+box-shadow:
+0 0 35px rgba(255,70,120,1),
+0 0 80px rgba(255,70,120,.9);
+}
+
+}
+
+@keyframes mythicGlow{
+
+from{
+box-shadow:
+0 0 40px #7b2cff,
+0 0 80px #7b2cff;
+}
+
+to{
+box-shadow:
+0 0 70px #c88cff,
+0 0 140px #c88cff;
+}
+
+}
+
+
+/* Stats */
+.profile-stats{
+  display:flex;
+  gap:30px;
+  margin-top:20px;
+}
+
+.stat{
+  text-align:center;
+}
+
+.stat h3{
+  font-size:22px;
+}
+
+/* Rank */
+.rank-text{
+  margin-top: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: 0.95;
+}
+.rank-progress{
+font-size:14px;
+color:#aaa;
+margin-top:5px;
+}
+
+/* XP */
+.xp-container{
+  width: 220px;
+  height: 12px;
+  margin: 10px 0 20px 0;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.25);
+}
+
+.xp-bar{
+  height: 100%;
+  width: 0%;
+
+  background: linear-gradient(
+    90deg,
+    #ff4d00,
+    #ff9900,
+    #ffd000
+  );
+
+  box-shadow:
+    0 0 12px rgba(255,153,0,0.7);
+
+  transition: width 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* Extra info */
+.profile-extra{
+  margin-top: 20px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.profile-extra p{
+  margin: 5px 0;
+}
+
+/* ===== Rank Colors ===== */
+.rank{
+font-weight:700;
+padding:6px 14px;
+border-radius:14px;
+font-size:14px;
+letter-spacing:1px;
+backdrop-filter:blur(10px);
+display:inline-flex;
+align-items:center;
+gap:6px;
+
+}
+
+.rank svg{
+width:18px;
+height:18px;
+flex-shrink:0;
+}
+
+/* Bronze */
+
+.rank-bronze{
+color:#cd7f32;
+background:linear-gradient(145deg,#3a2a1f,#5a3b2b);
+box-shadow:0 0 8px rgba(205,127,50,0.5);
+}
+
+/* Silver */
+
+.rank-silver{
+color:#e5e5e5;
+background:linear-gradient(145deg,#3f3f3f,#6c6c6c);
+box-shadow:0 0 10px rgba(200,200,200,0.6);
+}
+
+/* Gold */
+
+.rank-gold{
+color:#ffd700;
+background:linear-gradient(145deg,#5b4a00,#8c7200);
+box-shadow:0 0 12px rgba(255,215,0,0.7);
+}
+
+/* Diamond */
+
+.rank-diamond{
+color:#6be0ff;
+background:linear-gradient(145deg,#003c4a,#006a7c);
+box-shadow:0 0 14px rgba(100,220,255,0.9);
+}
+
+/* Legend */
+
+.rank-legend{
+color:#ff59e6;
+background:linear-gradient(145deg,#3c0036,#720066);
+box-shadow:0 0 16px rgba(255,80,220,0.9);
+}
+
+/* Platinum */
+
+.rank-platinum{
+color:#7affd4;
+background:linear-gradient(145deg,#004a3a,#007a60);
+box-shadow:0 0 13px rgba(80,255,200,0.85);
+}
+
+/* Master */
+
+.rank-master{
+color:#b88cff;
+background:linear-gradient(145deg,#2b004d,#4e008a);
+box-shadow:0 0 15px rgba(180,120,255,0.9);
+}
+
+/* Grandmaster */
+
+.rank-grandmaster{
+color:#ff6a6a;
+background:linear-gradient(145deg,#4a0000,#820000);
+box-shadow:0 0 17px rgba(255,80,80,0.95);
+}
+/* Mythic */
+
+.rank-mythic{
+color:#ff4040;
+background:linear-gradient(145deg,#450000,#8a0000);
+box-shadow:0 0 18px rgba(255,50,50,1);
+animation:mythicGlow 2s infinite alternate;
+}
+
+@keyframes mythicGlow{
+from{box-shadow:0 0 18px #ff3030}
+to{box-shadow:0 0 28px #ff0000}
+}
+
+/* ===== XP Glow ===== */
+
+.xp-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff4d00, #ff9900);
+  box-shadow: 0 0 15px #ff4d00;
+  transition: 0.4s ease;
+}
+
+/* ===== Badges ===== */
+
+.badge-section{
+margin-top:20px;
+text-align: center;
+
+}
+
+.badge-container{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:10px;
+justify-content: center;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 18px;
+  margin:6px;
+
+  border-radius:30px;
+
+  font-weight:600;
+  font-size:14px;
+  color:white;
+
+  background:linear-gradient(135deg,#ff8a00,#ff4d00);
+
+  box-shadow:
+    0 6px 15px rgba(255,120,0,0.45),
+    inset 0 2px 4px rgba(255,255,255,0.35);
+}
+
+
+@keyframes badgePop{
+from{
+transform:scale(0);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* ===== Achievement ===== */
+
+.achievement-section {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.achievement-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.achievement-section li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+
+.admin-badge{
+
+margin-left:8px;
+
+padding:3px 8px;
+
+border-radius:8px;
+
+font-size:12px;
+font-weight:700;
+
+background:linear-gradient(
+90deg,
+#ff0000,
+#ff6a00,
+#ff0000
+);
+
+background-size:200%;
+
+color:white;
+
+animation:adminGlow 3s linear infinite;
+
+box-shadow:
+0 0 6px #ff0000,
+0 0 12px rgba(255,0,0,0.6);
+
+}
+
+@keyframes adminGlow{
+
+0%{background-position:0%}
+100%{background-position:200%}
+
+}
+
+  </style>
+
+ <!-- cái này cũng y chang vậy luôn nè link bên dưới đây là của SIDEBAR -->
+  <script type="text/javascript" src="app.js" defer></script>
+  <script type="module" src="profile.js"></script>
+<!-- =======================================cái này mới là của MAIN===================== -->
+
+
+
+</head>
+<body>
+  <nav id="sidebar">
+    <ul>
+      <li>
+        <span class="logo">CD-WEB</span>
+        <button onclick=toggleSidebar() id="toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m313-480 155 156q11 11 11.5 27.5T468-268q-11 11-28 11t-28-11L228-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T468-692q11 11 11 28t-11 28L313-480Zm264 0 155 156q11 11 11.5 27.5T732-268q-11 11-28 11t-28-11L492-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l184-184q11-11 27.5-11.5T732-692q11 11 11 28t-11 28L577-480Z"/></svg>
+        </button>
+      </li>
+      <li>
+        <a href="home.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-200h120v-200q0-17 11.5-28.5T400-440h160q17 0 28.5 11.5T600-400v200h120v-360L480-740 240-560v360Zm-80 0v-360q0-19 8.5-36t23.5-28l240-180q21-16 48-16t48 16l240 180q15 11 23.5 28t8.5 36v360q0 33-23.5 56.5T720-120H560q-17 0-28.5-11.5T520-160v-200h-80v200q0 17-11.5 28.5T400-120H240q-33 0-56.5-23.5T160-200Zm320-270Z"/></svg>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="dashboard.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-640v-160q0-17 11.5-28.5T560-840h240q17 0 28.5 11.5T840-800v160q0 17-11.5 28.5T800-600H560q-17 0-28.5-11.5T520-640ZM120-480v-320q0-17 11.5-28.5T160-840h240q17 0 28.5 11.5T440-800v320q0 17-11.5 28.5T400-440H160q-17 0-28.5-11.5T120-480Zm400 320v-320q0-17 11.5-28.5T560-520h240q17 0 28.5 11.5T840-480v320q0 17-11.5 28.5T800-120H560q-17 0-28.5-11.5T520-160Zm-400 0v-160q0-17 11.5-28.5T160-360h240q17 0 28.5 11.5T440-320v160q0 17-11.5 28.5T400-120H160q-17 0-28.5-11.5T120-160Zm80-360h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+          <a href="create.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h207q16 0 30.5 6t25.5 17l57 57h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Zm400-160v40q0 17 11.5 28.5T600-320q17 0 28.5-11.5T640-360v-40h40q17 0 28.5-11.5T720-440q0-17-11.5-28.5T680-480h-40v-40q0-17-11.5-28.5T600-560q-17 0-28.5 11.5T560-520v40h-40q-17 0-28.5 11.5T480-440q0 17 11.5 28.5T520-400h40Z"/></svg>
+          <span>Leaderboard</span>
+        </a>
+          
+        </button>
+      </li>
+      <li>
+         <a href="todolist.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m221-313 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-228q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm0-320 142-142q12-12 28-11.5t28 12.5q11 12 11 28t-11 28L250-548q-12 12-28 12t-28-12l-86-86q-11-11-11-28t11-28q11-11 28-11t28 11l57 57Zm339 353q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h280q17 0 28.5 11.5T880-320q0 17-11.5 28.5T840-280H560Zm0-320q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h280q17 0 28.5 11.5T880-640q0 17-11.5 28.5T840-600H560Z"/></svg>
+          <span>Todo-Lists</span>
+        </a>  
+      </li>
+      <li>
+        <a href="calendar.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-40q0-17 11.5-28.5T280-880q17 0 28.5 11.5T320-840v40h320v-40q0-17 11.5-28.5T680-880q17 0 28.5 11.5T720-840v40h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>
+          <span>Calendar</span>
+        </a>
+      </li>
+      <li class="active">
+        <a href="profile.html">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-240v-32q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v32q0 33-23.5 56.5T720-160H240q-33 0-56.5-23.5T160-240Zm80 0h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"/></svg>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li>
+          <a href="shop.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+              <path d="M200-80q-33 0-56.5-23.5T120-160v-480h80v480h560v-480h80v480q0 33-23.5 56.5T760-80H200Zm80-640v-80h400v80H280Zm200 240q-33 0-56.5-23.5T400-560v-80h160v80q0 23-23.5 41.5T480-480Z"/>
+            </svg>
+            <span>Shop</span>
+            </a>
+        </li>
+        <li>
+          <a href="studyroom.html">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+              <path d="M480-80 120-240v-480l360-160 360 160v480L480-80Zm0-80 280-124v-348L480-760 200-632v348l280 124Zm0-280Zm0 0Z"/>
+            </svg>
+            <span>Study Room</span>
+          </a>
+        </li>
+    </ul>
+  </nav>
+
+
+  <!-- main nằm ở đây này , tỉnh lại đi cu:) -->
+
+
+  <main>
+  <div class="container">
+    <!-- main day -->
+
+    <!-- <h2>Profile</h2> -->
+
+    <div class="card profile-card">
+
+      <div class="avatar-frame frame-bronze" id="avatarFrame">
+
+        <div class="avatar-glow"></div>
+
+        <img id="profileAvatar" class="avatar">
+
+      </div>
+
+      <h2 id="profileName"></h2>
+      <p id="profileEmail"></p>
+
+      <!-- XP + Rank -->
+      <h3 class="rank-text">
+        Rank: <span id="profileRank">Bronze</span>
+      </h3>
+
+      <div class="xp-container">
+        <div class="xp-bar" id="xpBar"></div>
+      </div>
+        <p class="rank-progress">
+            Next Rank: <span id="rankProgress">0 / 100</span>
+        </p>
+
+      <div class="profile-stats">
+
+        <div class="stat">
+          <h3 id="profileLevel">1</h3>
+          <p>Level</p>
+        </div>
+
+        <div class="stat">
+          <h3 id="profileXP">0</h3>
+          <p>XP</p>
+        </div>
+
+        <div class="stat">
+          <h3 id="profileSessions">0</h3>
+          <p>Study Sessions</p>
+        </div>
+
+        <div class="stat">
+          <h3 id="profileHours">0</h3>
+          <p>Study Hours</p>
+        </div>
+
+      </div>
+
+      <!-- Productivity Stats -->
+      <div class="profile-extra">
+
+        <p>Total Tasks Completed: 
+          <strong id="profileTasks">0</strong>
+        </p>
+
+        <p>Focus Score:
+          <strong id="profileFocus">0</strong>
+        </p>
+
+        <p>Discipline XP:
+          <strong id="profileDiscipline">0</strong>
+        </p>  
+
+      </div>
+      <div class="badge-section">
+
+      <h3>Achievements</h3>
+
+      <div id="badgeContainer" class="badge-container">
+
+      </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- end main day -->
+  </div>
+  </main>
+</body>
+</html>

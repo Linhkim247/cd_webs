@@ -1,0 +1,213 @@
+body{
+user-select:none;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.checkin-container{
+text-align:center;
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+/* title */
+
+h1{
+font-size:23px;
+margin-bottom:20px;
+font-family:inherit;
+text-align: center;
+}
+
+/* streak */
+
+.streak-box{
+font-size:22px;
+margin-bottom:40px;
+color:#ff9d00;
+}
+
+/* =========================
+   ENVELOPES GRID
+========================= */
+
+.envelopes{
+
+display:grid;
+
+grid-template-columns:repeat(5,1fr);
+
+gap:30px;
+
+justify-items:center;
+
+}
+
+/* =========================
+   ENVELOPE CARD
+========================= */
+
+.envelope{
+
+width:170px;
+height:210px;
+
+background:linear-gradient(145deg,#ff2e2e,#b30000);
+
+border-radius:22px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+color:white;
+
+font-size:22px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:0.3s;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.45),
+inset 0 0 20px rgba(255,255,255,0.1);
+
+overflow:hidden;
+position:relative;
+
+}
+
+/* hover */
+
+.envelope:hover{
+
+transform:scale(1.07) translateY(-4px);
+
+}
+
+/* =========================
+   OPEN ANIMATION
+========================= */
+
+.envelope.opening{
+animation:shake 0.6s;
+}
+
+.envelope.opened{
+
+background:linear-gradient(145deg,#ffd700,#ffb300);
+color:#111;
+
+}
+
+/* =========================
+   REWARD BOX
+========================= */
+
+.rewardBox{
+
+position:absolute;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:15px;
+font-weight:600;
+
+text-align:center;
+line-height:1.6;
+
+width:80%;
+
+}
+
+/* reward text */
+
+.reward{
+
+position:absolute;
+bottom:15px;
+
+font-size:14px;
+text-align:center;
+
+opacity:0;
+
+}
+
+.envelope.opened .reward{
+opacity:1;
+}
+
+/* =========================
+   ICON
+========================= */
+
+.front{
+font-size:48px;
+}
+
+/* =========================
+   SHAKE
+========================= */
+
+@keyframes shake{
+
+0%{transform:rotate(0deg)}
+25%{transform:rotate(3deg)}
+50%{transform:rotate(-3deg)}
+75%{transform:rotate(2deg)}
+100%{transform:rotate(0deg)}
+
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width:900px){
+
+.envelopes{
+
+grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width:700px){
+
+.envelopes{
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+.envelope{
+
+width:140px;
+height:170px;
+
+border-radius:18px;
+
+}
+
+.front{
+
+font-size:38px;
+
+}
+
+}

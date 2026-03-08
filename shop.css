@@ -1,0 +1,487 @@
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+overflow:hidden;
+}
+
+
+/* TOP BAR */
+
+.shop-topbar{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:30px;
+margin-bottom:20px;
+}
+
+.currency{
+background:white;
+padding:8px 16px;
+border-radius:10px;
+display:flex;
+gap:8px;
+font-size:14px;
+}
+
+
+/* INVENTORY BUTTON */
+
+.inventory-btn{
+position:fixed;
+top:20px;
+right:20px;
+
+background:#22c55e;
+padding:10px 14px;
+
+border-radius:12px;
+cursor:pointer;
+
+font-size:18px;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+
+z-index:20;
+}
+
+#bagCount{
+font-size:13px;
+margin-left:5px;
+}
+
+
+/* TITLE */
+
+.shop-title{
+text-align:center;
+margin:20px 0 30px;
+font-size:28px;
+}
+
+
+/* GRID */
+
+.shop-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+
+/* ITEM CARD */
+
+.shop-card{
+
+background:rgba(255,255,255,0.14);
+
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,0.18);
+
+padding:20px;
+
+border-radius:14px;
+
+text-align:center;
+
+box-shadow:0 6px 15px rgba(0,0,0,0.18);
+
+transition:0.25s;
+
+}
+
+.shop-card:hover{
+transform:translateY(-4px);
+}
+
+.shop-card h3{
+margin-bottom:10px;
+}
+
+.shop-card p{
+font-size:14px;
+opacity:0.8;
+margin-bottom:10px;
+}
+
+
+/* PRICE */
+
+.price{
+font-weight:bold;
+margin-bottom:15px;
+}
+
+
+/* BUTTON */
+
+.shop-card button{
+background:#22c55e;
+border:none;
+padding:8px 16px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+.shop-card button:hover{
+background:#16a34a;
+}
+
+
+/* INVENTORY PANEL */
+
+.inventory-panel{
+position:fixed;
+
+right:-370px;
+top:0;
+
+width:320px;
+height:100%;
+border-radius: 1em;
+
+padding:20px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border-left:1px solid rgba(255,255,255,0.15);
+
+box-shadow:-10px 0 40px rgba(0,0,0,0.35);
+
+transition:0.35s;
+
+overflow-y:auto;
+
+z-index:10000;
+}
+
+.inventory-panel.show{
+right:0;
+}
+
+.inventory-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+#closeInventory{
+cursor:pointer;
+}
+
+
+/* INVENTORY GRID */
+
+.inventory-grid{
+display:grid;
+gap:12px;
+}
+
+
+/* INVENTORY CARD */
+
+.inventory-card{
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.18);
+
+border-radius:12px;
+
+padding:12px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+box-shadow:
+0 8px 20px rgba(0,0,0,0.25),
+inset 0 0 10px rgba(255,255,255,0.08);
+
+transition:0.25s;
+
+}
+
+/* LEFT SIDE ITEM */
+
+.item-left{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.item-icon{
+font-size:22px;
+}
+
+.item-name{
+font-weight:600;
+}
+
+.item-count{
+font-size:12px;
+color:#9ca3af;
+}
+
+.inventory-card button{
+background:#3b82f6;
+border:none;
+padding:4px 10px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+
+/* BOOST TIMER */
+
+#boostTimer{
+position:fixed;
+
+top:60px;
+
+background:#111827;
+color:white;
+
+padding:8px 14px;
+border-radius:8px;
+
+font-weight:bold;
+
+z-index:40;
+}
+
+
+/* POPUP MESSAGE */
+
+.popup{
+
+position:fixed;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%) scale(0.85);
+
+background:rgba(30,41,59,0.65);
+
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+color:white;
+
+padding:20px 30px;
+
+border-radius:14px;
+
+font-weight:bold;
+font-size:16px;
+
+border:1px solid rgba(255,255,255,0.18);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.45),
+inset 0 0 10px rgba(255,255,255,0.08);
+
+opacity:0;
+
+transition:
+opacity 0.25s ease,
+transform 0.25s ease;
+
+z-index:999;
+
+text-align:center;
+
+pointer-events:none;
+
+}
+
+/* trạng thái mở */
+
+.popup.show{
+
+opacity:1;
+
+transform:translate(-50%,-50%) scale(1);
+
+pointer-events:auto;
+
+}
+
+/* trạng thái đóng */
+
+.popup.hide{
+
+opacity:0;
+
+transform:translate(-50%,-50%) scale(0.85);
+
+}
+
+
+/* LUCKY BOX POPUP */
+
+.loot-popup{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,0.8);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+z-index:1000;
+
+}
+
+.loot-container{
+text-align:center;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:20px;
+}
+
+/* BOX */
+
+.loot-box{
+font-size:90px;
+display:inline-block;
+filter:drop-shadow(0 0 12px rgba(255,200,0,0.7));
+transition:transform 0.2s;
+}
+
+/* SHAKE */
+
+@keyframes lootShake{
+
+0%{transform:rotate(-6deg) translateY(0)}
+25%{transform:rotate(6deg) translateY(-2px)}
+50%{transform:rotate(-5deg) translateY(2px)}
+75%{transform:rotate(5deg) translateY(-2px)}
+100%{transform:rotate(-6deg) translateY(0)}
+
+}
+
+/* RESULT CARD */
+
+.loot-result{
+
+font-size:28px;
+font-weight:700;
+
+margin-top:20px;
+
+opacity:0;
+transform:scale(0.7);
+
+transition:all 0.3s ease;
+
+}
+
+.loot-result.show{
+
+opacity:1;
+transform:scale(1);
+
+}
+
+/* CLOSE BUTTON */
+
+.loot-container button{
+
+margin-top:10px;
+
+padding:8px 18px;
+
+border:none;
+border-radius:8px;
+
+background:#2f6df6;
+color:white;
+
+font-size:14px;
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+.loot-container button:hover{
+transform:scale(1.05);
+background:#1f5be0;
+}
+
+
+.loot-box.shake{
+animation:lootShake 0.55s infinite;
+}
+@keyframes lootShake{
+
+0%{transform:rotate(-8deg) translateY(0)}
+20%{transform:rotate(8deg) translateY(-2px)}
+40%{transform:rotate(-7deg) translateY(2px)}
+60%{transform:rotate(7deg) translateY(-2px)}
+80%{transform:rotate(-6deg) translateY(1px)}
+100%{transform:rotate(6deg) translateY(0)}
+
+}
+
+.loot-box.open{
+animation:lootOpen 0.35s ease;
+}
+
+@keyframes lootOpen{
+
+0%{
+transform:scale(1);
+filter:brightness(1);
+}
+
+50%{
+transform:scale(1.4);
+filter:brightness(2);
+}
+
+100%{
+transform:scale(1);
+filter:brightness(1.3);
+}
+
+}
+
+/* MOBILE */
+
+@media (max-width:600px){
+
+.shop-topbar{
+flex-direction:column;
+gap:10px;
+}
+
+.shop-title{
+font-size:22px;
+}
+
+}
+
