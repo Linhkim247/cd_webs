@@ -13,6 +13,7 @@ import {
 const tabs = document.querySelectorAll(".tab")
 const pages = document.querySelectorAll(".page")
 const slider = document.getElementById("slider")
+const stages = document.querySelectorAll(".stage")
 
 tabs.forEach((tab,i)=>{
 
@@ -41,6 +42,19 @@ if(tab.dataset.page === lastTab){
 tab.click()
 }
 })
+}
+
+
+// highlight time trong study
+
+function highlightStage(index){
+
+stages.forEach(s=>s.classList.remove("running"))
+
+if(stages[index]){
+stages[index].classList.add("running")
+}
+
 }
 
 /* ---------- LOAD VIDEO ---------- */
@@ -79,7 +93,7 @@ let remaining
 let currentStage = 0
 
 const progressBar = document.getElementById("progressBar")
-const claimBtns = document.querySelectorAll(".claimBtn")
+// const claimBtns = document.querySelectorAll(".claimBtn")
 const startBtn = document.getElementById("startBtn")
 const minutesInput = document.getElementById("minutesInput")
 
@@ -105,7 +119,7 @@ startBtn.onclick = () => {
 
 let minutes = Number(minutesInput.value)
 
-if(!minutes || minutes < 10){
+if(!minutes || minutes < 5){
 
 showPopup(
 "Focus Requirement",
@@ -114,7 +128,7 @@ showPopup(
 
 return
 }
-
+highlightStage(0) 
 let totalSeconds = minutes * 60
 
 stageSeconds = totalSeconds / 4
@@ -152,6 +166,13 @@ function runTimer(){
 
 clearInterval(timer)
 
+/* FIX BUG CLAIM */
+
+if(remaining <= 0){
+enableClaim(currentStage)
+return
+}
+
 timer = setInterval(()=>{
 
 if(document.hidden) return
@@ -173,13 +194,74 @@ timeBox.innerText = format(remaining)
 if(remaining <= 0){
 
 remaining = 0
-
 clearInterval(timer)
 
-enableClaim(currentStage)
+/* AUTO CLAIM */
+
+addXP(25)
+showXP(25)
+
+showPopup(
+"Stage Complete",
+"You completed stage " + (currentStage+1) + "/4.\nNext stage will start."
+)
+
+/* đánh dấu stage đã claim */
+
+let session = JSON.parse(localStorage.getItem("studySession"))
+if(session){
+session.claimed[currentStage] = true
+localStorage.setItem("studySession",JSON.stringify(session))
+}
+
+/* NEXT STAGE */
+
+if(currentStage < 3){
+
+currentStage++
+
+remaining = stageSeconds
+
+progressBar.style.width = "100%"
+
+highlightStage(currentStage)
+
+/* CHỜ đóng popup rồi chạy */
+
+popupBtn.onclick = ()=>{
+
+popupOverlay.classList.remove("show")
+
+runTimer()
 
 }
 
+}else{
+
+/* SESSION COMPLETE */
+
+let session = JSON.parse(localStorage.getItem("studySession"))
+
+addMinute(session.minutes)
+
+showXP(100)
+
+localStorage.removeItem("studySession")
+
+popupBtn.onclick = ()=>{
+
+popupOverlay.classList.remove("show")
+
+showPopup(
+"Session Complete",
+"You finished the study session. Great discipline!"
+)
+
+}
+
+}
+
+}
 saveSession()
 
 },1000)
@@ -199,60 +281,67 @@ btn.classList.add("active")
 
 /* ---------- CLAIM ---------- */
 
-claimBtns.forEach(btn=>{
+// claimBtns.forEach(btn=>{
 
-btn.onclick = ()=>{
+// btn.onclick = ()=>{
 
-const stage = Number(btn.dataset.stage)
+// const stage = Number(btn.dataset.stage)
 
-let session = JSON.parse(localStorage.getItem("studySession"))
+// let session = JSON.parse(localStorage.getItem("studySession"))
 
-if(!session) return
-if(session.claimed[stage]) return
+// if(!session) return
+// if(session.claimed[stage]) return
 
-session.claimed[stage] = true
+// session.claimed[stage] = true
 
-btn.disabled = true
-btn.innerText = "Claimed"
-btn.classList.remove("active")
+// btn.disabled = true
+// btn.innerText = "Claimed"
+// btn.classList.remove("active")
 
-addXP(25)
-showXP(25)
+// addXP(25)
+// showXP(25)
 
-/* next stage */
+// /* next stage */
 
-if(stage < 3){
+// if(stage < 3){
 
-currentStage++
+// currentStage++
 
-remaining = stageSeconds
+// remaining = stageSeconds
 
-progressBar.style.width="100%"
+// progressBar.style.width="100%"
 
-runTimer()
+// highlightStage(currentStage)
 
-}else{
+// showPopup(
+// "Stage Complete",
+// "You finished " + (stage+1) + "/4 stage.\nTake a short break!"
+// )
 
-let session = JSON.parse(localStorage.getItem("studySession"))
+// runTimer()
 
-addMinute(session.minutes)   // update firestore
+// }else{
 
-showXP(100)
+// let session = JSON.parse(localStorage.getItem("studySession"))
 
-localStorage.removeItem("studySession")
+// addMinute(session.minutes)   // update firestore
 
-showPopup(
-"Session Complete",
-"You finished the study session. Great discipline!"
-)
+// showXP(100)
 
-}
+// localStorage.removeItem("studySession")
 
-saveSession()
+// showPopup(
+// "Session Complete",
+// "You finished the study session. Great discipline!"
+// )
 
-}
+// }
 
-})
+// saveSession()
+
+// }
+
+// })
 
 /* ---------- FINISH SESSION ---------- */
 
@@ -327,8 +416,13 @@ claimBtns[i].innerText = "Claimed"
 }
 
 })
-
-runTimer()
+highlightStage(currentStage)
+document.getElementById("time"+currentStage).innerText = format(remaining)
+if(remaining <= 0){
+  enableClaim(currentStage)
+}else{
+  runTimer()
+}
 
 })
 
@@ -720,7 +814,6 @@ localStorage.removeItem("examSuspend")
 
 return
 }
-
 showPopup(
 "Suspended",
 "You must wait " + formatExam(remaining) + " to use it again"
