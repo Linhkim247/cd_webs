@@ -479,7 +479,7 @@ window.addEventListener("message", function (event) {
     loginModal.classList.remove("active");
 
     setTimeout(() => {
-      window.location.href = "/newproject-Canhdev/sidebar-menu/home.html";
+      window.location.href = "./home.html";
     }, 400);
 
   }
