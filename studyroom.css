@@ -749,3 +749,46 @@ color:#aaa;
 .close-btn:hover{
 color:rgb(216, 43, 43);
 }
+
+
+/* stage đang chạy */
+
+.stage.running{
+
+background:linear-gradient(
+135deg,
+rgba(99,102,241,0.35),
+rgba(79,70,229,0.25)
+);
+
+border:1px solid rgba(99,102,241,0.6);
+
+box-shadow:
+0 0 20px rgba(99,102,241,0.45),
+0 0 40px rgba(99,102,241,0.25);
+
+transform:scale(1.03);
+}
+
+/* hiệu ứng pulse */
+
+.stage.running::after{
+content:"";
+position:absolute;
+inset:0;
+border-radius:14px;
+
+box-shadow:
+0 0 20px rgba(99,102,241,0.5),
+0 0 40px rgba(99,102,241,0.3);
+
+opacity:.7;
+
+animation:stagePulse 2s infinite;
+}
+
+@keyframes stagePulse{
+0%{opacity:.3}
+50%{opacity:.8}
+100%{opacity:.3}
+}
