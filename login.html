@@ -178,7 +178,6 @@ body{
   <div class="flame flame3"></div>
 </div>
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup } 
 from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
@@ -211,13 +210,16 @@ document.getElementById("googleLogin").addEventListener("click", async ()=>{
 
     Swal.fire({
       icon:"success",
-      title:"🔥 Chào mừng!",
+      title:"🔥 Chào mừng. Bạn đã tới với thử thách.",
       timer:1200,
       showConfirmButton:false
     });
 
     setTimeout(()=>{
-      window.location.href="./home.html";
+      window.parent.postMessage(
+        { type:"LOGIN_SUCCESS" },
+        "*"
+      );
     },1200);
 
   }catch(err){
@@ -232,6 +234,19 @@ document.getElementById("googleLogin").addEventListener("click", async ()=>{
 
 });
 
+
+const userRef = doc(db,"users",user.uid);
+
+await setDoc(userRef,{
+name:user.displayName,
+email:user.email,
+photoURL:user.photoURL,
+xp:0,
+level:1,
+streak:0,
+disciplineScore:0,
+createdAt:new Date()
+},{merge:true});
 </script>
 
 </body>
