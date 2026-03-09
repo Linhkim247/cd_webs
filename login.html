@@ -183,9 +183,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup } 
 from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-import { getFirestore, doc, setDoc } 
-from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyC_EZOZ-ZtU64ov0waxj2_cylX9g6FcKcY",
   authDomain: "ashopvn-42bf4.firebaseapp.com",
@@ -198,7 +195,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 document.getElementById("googleLogin").addEventListener("click", async ()=>{
@@ -211,31 +207,17 @@ document.getElementById("googleLogin").addEventListener("click", async ()=>{
 
   try{
 
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    const userRef = doc(db,"users",user.uid);
-
-    await setDoc(userRef,{
-      name:user.displayName,
-      email:user.email,
-      photoURL:user.photoURL,
-      xp:0,
-      level:1,
-      streak:0,
-      disciplineScore:0,
-      createdAt:new Date()
-    },{merge:true});
+    await signInWithPopup(auth, provider);
 
     Swal.fire({
       icon:"success",
-      title:"🔥 Chào mừng. Bạn đã tới với thử thách.",
+      title:"🔥 Chào mừng!",
       timer:1200,
       showConfirmButton:false
     });
 
     setTimeout(()=>{
-      window.location.href = "./home.html";
+      window.location.href="./home.html";
     },1200);
 
   }catch(err){
